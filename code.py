@@ -1,14 +1,14 @@
-import pyttsx3                    
-import datetime
-import speech_recognition as sr
-import webbrowser
+import pyttsx3                    #pip install pyttsx3 - module to convert text to speech
+import datetime                   #built-in module
+import speech_recognition as sr   #pip install speechRecognition
+import webbrowser                 #built-in module
 
-engine = pyttsx3.init('sapi5')
+engine = pyttsx3.init('sapi5')    #microsoft sound API
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[1].id)  #setting Zira's voice
 
 
-def speak(str):
+def speak(str):                                              #converting text to speech....
     from win32com.client import Dispatch
     speak = Dispatch("SAPI.SpVoice")
     speak.Speak(str)
@@ -25,8 +25,7 @@ def wish():
     else:
         speak("Good Evening Sir! How may I help you!")
 
-
-def takeCommand():
+def takeCommand():                                            #converting users input to text and searching by google API
 
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -48,12 +47,11 @@ if __name__ == "__main__":
     wish()
     
     while True:
-        query = takeCommand().lower()
+        query = takeCommand().lower()         #converting speech (userinput) to text and searching on wikipedia
         if 'wikipedia' in query:
-
             query = query.replace("wikipedia", "")
             results = wikipedia.summary(query, sentences=4)
             print(results)
             speak(f"According to Wikipedia: {results}")
-        elif 'open wikipedia' in query:
+        elif 'open wikipedia' in query:      #opening wikipedia.com
             webbrowser.open("wikipedia.com")
