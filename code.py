@@ -1,4 +1,4 @@
-port pyttsx3                    #pip install pyttsx3 - module to convert text to speech
+import pyttsx3                    #pip install pyttsx3 - module to convert text to speech
 import datetime                   #built-in module
 import speech_recognition as sr   #pip install speechRecognition
 import webbrowser                 #built-in module
